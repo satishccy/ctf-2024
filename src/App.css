@@ -63,3 +63,25 @@ h1 {
   width: 100%;
   overflow-x: auto;
 }
+
+nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px auto;
+  margin-bottom: 30px;
+}
+
+nav div a {
+  margin: 0 8px;
+  border: 2px solid #1e1;
+  border-radius: 8px;
+  padding: 4px 8px;
+  color: #1e1;
+  text-decoration: none;
+}
+
+nav div a:hover, nav div a:active, nav div a.active {
+  background-color: #1e1;
+  color: #111;
+}

@@ -1,19 +1,22 @@
-import { HashRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { HashRouter as Router, Route, Routes, NavLink } from "react-router-dom";
 import { Challenge1Page } from "./components/Challenge1/Challenge1.page";
 import { Challenge2Page } from "./components/Challenge2/Challenge2.page";
+import algorandLogo from "./assets/algorand_logo_mark_black.svg";
 
 function App() {
   return (
     <Router>
+      <div className="bg">
+          <img src={algorandLogo} alt="Algorand Logo" />
+          <h1>Algobharat CTF 2024</h1>
+        </div>
       <nav>
-        <ul>
-          <li>
-            <Link to="/challenge-1">Challenge 1</Link>
-          </li>
-          <li>
-            <Link to="/challenge-2">Challenge 2</Link>
-          </li>
-        </ul>
+        <div>
+          <NavLink to="/challenge-1">Challenge 1</NavLink>
+        </div>
+        <div>
+          <NavLink to="/challenge-2">Challenge 2</NavLink>
+        </div>
       </nav>
       <main>
         <Routes>

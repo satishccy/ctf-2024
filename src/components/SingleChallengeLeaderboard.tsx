@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import algorandLogo from "../assets/algorand_logo_mark_black.svg";
 import "../App.css";
+import { isMaskedAddress, isMaskedBlock } from "../config";
 
 type row = { address: string; confirmedRound: number; timeStamp: number };
 
@@ -32,11 +33,8 @@ export const SingleChallengeLeaderboard = ({
   return (
     <>
       <div className="main">
-        <div className="bg">
-          <img src={algorandLogo} alt="Algorand Logo" />
-          <h1>Algobharat CTF {challengeName}</h1>
-        </div>
-        <h2>Leaderboard [TESTNET]</h2>
+        
+        <h2>{challengeName} Leaderboard [TESTNET]</h2>
         <div className="table-wrapper">
           <table id="leaderboard" className="row">
             <thead>
@@ -44,7 +42,7 @@ export const SingleChallengeLeaderboard = ({
                 <th className="row">#</th>
                 <th className="row">Address</th>
                 <th className="row">Timestamp</th>
-                <th className="row">Block No</th>
+                {isMaskedBlock ? "" : <th className="row">Block No</th>}
               </tr>
             </thead>
             <tbody>
@@ -63,7 +61,11 @@ export const SingleChallengeLeaderboard = ({
                   return (
                     <tr className="row" key={row.address}>
                       <td className="placing-1 row">{index + 1}</td>
-                      <td className="row">{row.address}</td>
+                      <td className="row">
+                        {!isMaskedAddress
+                          ? row.address
+                          : row.address.slice(0, 50) + "*".repeat(8)}
+                      </td>
                       <td className="row">
                         {new Date(row.timeStamp * 1000)
                           .toLocaleString("en-US", {
@@ -77,7 +79,11 @@ export const SingleChallengeLeaderboard = ({
                           })
                           .replace(",", "")}
                       </td>
-                      <td className="row">{row.confirmedRound}</td>
+                      {isMaskedBlock ? (
+                        ""
+                      ) : (
+                        <td className="row">{row.confirmedRound}</td>
+                      )}
                     </tr>
                   );
                 })}
