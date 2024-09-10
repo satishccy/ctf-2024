@@ -17,6 +17,7 @@ export const SingleChallengeLeaderboard = ({
 
   useEffect(() => {
     (async () => {
+      document.title = `${challengeName} Leaderboard [TESTNET] - Algobharat CTF 2024`;
       try {
         const rows = await fetchLeaderboard();
         setRows(rows);
