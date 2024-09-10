@@ -13,8 +13,8 @@ function App() {
         </nav>
         <main>
             <Routes>
-                <Route path="./challenge-1" element={<Challenge1Page />} />
-                <Route path="./challenge-2" element={<Challenge2Page />} />
+                <Route path="challenge-1" element={<Challenge1Page />} />
+                <Route path="challenge-2" element={<Challenge2Page />} />
             </Routes>
         </main>
     </Router>
