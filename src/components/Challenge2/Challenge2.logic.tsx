@@ -15,7 +15,6 @@ export async function Challenge2Logic() {
     .txType("axfer")
     .sigType("sig")
     .do();
-  console.log(response);
   for (let i = 0; i < response.transactions.length; i++) {
     if (response.transactions[i]["tx-type"] == "axfer") {
       if (response.transactions[i]["asset-transfer-transaction"].amount == 0) {
@@ -37,7 +36,6 @@ export async function Challenge2Logic() {
       .sigType("sig")
       .nextToken(response["next-token"])
       .do();
-    console.log(response);
     for (let i = 0; i < response.transactions.length; i++) {
         if (response.transactions[i]["tx-type"] == "axfer") {
           if (response.transactions[i]["asset-transfer-transaction"].amount == 0) {
@@ -53,6 +51,5 @@ export async function Challenge2Logic() {
         }
       }
   }
-  console.log(rows)
   return rows;
 }

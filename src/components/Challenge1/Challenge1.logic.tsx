@@ -16,7 +16,6 @@ export async function Challenge1Logic() {
     .txType("pay")
     .sigType("sig")
     .do();
-  console.log(response);
   for (let i = 0; i < response.transactions.length; i++) {
     const tx = response.transactions[i];
     const sender: string = tx.sender;
@@ -42,7 +41,6 @@ export async function Challenge1Logic() {
       .sigType("sig")
       .nextToken(response["next-token"])
       .do();
-    console.log(response);
     for (let i = 0; i < response.transactions.length; i++) {
       const tx = response.transactions[i];
       const sender: string = tx.sender;
