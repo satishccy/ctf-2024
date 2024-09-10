@@ -1,5 +1,5 @@
 {
-  "name": "ctf-2024-challenge-1",
+  "name": "ctf-2024",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,7 +12,8 @@
   "dependencies": {
     "algosdk": "^2.9.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
