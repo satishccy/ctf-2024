@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import algorandLogo from "../assets/algorand_logo_mark_black.svg";
 import "../App.css";
 import { isMaskedAddress, isMaskedBlock } from "../config";
 
