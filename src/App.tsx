@@ -4,7 +4,7 @@ import { Challenge2Page } from "./components/Challenge2/Challenge2.page";
 
 function App() {
   return (
-    <Router basename="/ctf-2024/dist">
+    <Router>
       <nav>
         <ul>
           <li>
