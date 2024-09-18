@@ -30,6 +30,7 @@ export async function Challenge1Logic() {
         confirmedRound: tx["confirmed-round"],
         timeStamp: tx["round-time"],
       });
+      accounts.push(sender);
     }
   }
   while (response["next-token"]) {
@@ -55,6 +56,7 @@ export async function Challenge1Logic() {
           confirmedRound: tx["confirmed-round"],
           timeStamp: tx["round-time"],
         });
+        accounts.push(sender);
       }
     }
   }
