@@ -20,7 +20,7 @@ export const SingleChallengeLeaderboard = ({
       document.title = `${challengeName} Leaderboard [TESTNET] - Algobharat CTF 2024`;
       try {
         const rows = await fetchLeaderboard();
-        setRows(rows);
+        setRows(rows.slice(0, 10)); 
         setLoading(false);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (e: any) {
@@ -28,13 +28,12 @@ export const SingleChallengeLeaderboard = ({
         setLoading(false);
       }
     })();
-  }, []);
+  }, [fetchLeaderboard, challengeName]);
 
   return (
     <>
       <div className="main">
-        
-        <h2>{challengeName} Leaderboard [TESTNET]</h2>
+        <h2>{challengeName} Top 10 Leaderboard [TESTNET]</h2>
         <div className="table-wrapper">
           <table id="leaderboard" className="row">
             <thead>
@@ -57,36 +56,32 @@ export const SingleChallengeLeaderboard = ({
                 </tr>
               )}
               {rows &&
-                rows.map((row, index) => {
-                  return (
-                    <tr className="row" key={row.address}>
-                      <td className="placing-1 row">{index + 1}</td>
-                      <td className="row">
-                        {!isMaskedAddress
-                          ? row.address
-                          : row.address.slice(0, 50) + "*".repeat(8)}
-                      </td>
-                      <td className="row">
-                        {new Date(row.timeStamp * 1000)
-                          .toLocaleString("en-US", {
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                            second: "2-digit",
-                            hour12: false,
-                          })
-                          .replace(",", "")}
-                      </td>
-                      {isMaskedBlock ? (
-                        ""
-                      ) : (
-                        <td className="row">{row.confirmedRound}</td>
-                      )}
-                    </tr>
-                  );
-                })}
+                rows.map((row, index) => (
+                  <tr className="row" key={row.address}>
+                    <td className="placing-1 row">{index + 1}</td>
+                    <td className="row">
+                      {!isMaskedAddress
+                        ? row.address
+                        : row.address.slice(0, 50) + "*".repeat(8)}
+                    </td>
+                    <td className="row">
+                      {new Date(row.timeStamp * 1000)
+                        .toLocaleString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          second: "2-digit",
+                          hour12: false,
+                        })
+                        .replace(",", "")}
+                    </td>
+                    {isMaskedBlock ? "" : (
+                      <td className="row">{row.confirmedRound}</td>
+                    )}
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
