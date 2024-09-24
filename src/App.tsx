@@ -1,6 +1,7 @@
 import { HashRouter as Router, Route, Routes, NavLink } from "react-router-dom";
 import { Challenge1Page } from "./components/Challenge1/Challenge1.page";
 import { Challenge2Page } from "./components/Challenge2/Challenge2.page";
+import { Challenge3Page } from "./components/Challenge3/Challenge3.page";
 import algorandLogo from "./assets/algorand_logo_mark_black.svg";
 
 function App() {
@@ -17,11 +18,15 @@ function App() {
         <div>
           <NavLink to="/challenge-2">Challenge 2</NavLink>
         </div>
+        <div>
+          <NavLink to="/challenge-3">Challenge 3</NavLink>
+        </div>
       </nav>
       <main>
         <Routes>
           <Route path="/challenge-1" element={<Challenge1Page />} />
           <Route path="/challenge-2" element={<Challenge2Page />} />
+          <Route path="/challenge-3" element={<Challenge3Page />} />
         </Routes>
       </main>
     </Router>

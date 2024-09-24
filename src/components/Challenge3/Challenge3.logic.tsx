@@ -6,7 +6,7 @@ type row = {
   isValidSubmission: boolean;
 };
 
-export async function Challenge1Logic(startTime: number, endTime: number) {
+export async function Challenge3Logic(startTime: number, endTime: number) {
   const rows: row[] = [];
   const accounts: string[] = [];
   const indexerClient = new algosdk.Indexer(
@@ -22,6 +22,8 @@ export async function Challenge1Logic(startTime: number, endTime: number) {
     .sigType("sig")
     .afterTime(new Date(startTime * 1000).toISOString())
     .do();
+  const decoder = new TextDecoder();
+
   console.log(response);
   for (let i = 0; i < response.transactions.length; i++) {
     const tx = response.transactions[i];
@@ -31,11 +33,16 @@ export async function Challenge1Logic(startTime: number, endTime: number) {
         ? tx.roundTime <= endTime
         : true
       : false;
+    console.log(decoder.decode(tx.note));
     if (tx.paymentTransaction) {
       if (
         Number(tx.paymentTransaction.amount) == algosdk.algosToMicroalgos(1) &&
         tx.paymentTransaction.receiver ==
-          "2JAZQO6Z5BCXFMPVW2CACK2733VGKWLZKS6DGG565J7H5NH77JNHLIIXLY"
+          "2JAZQO6Z5BCXFMPVW2CACK2733VGKWLZKS6DGG565J7H5NH77JNHLIIXLY" &&
+        (decoder.decode(tx.note).toLowerCase() ==
+          "ae6ebfcff2e1d10cafb51c0e4ab77da22838436dd3b5d82b7d2eb6104bd30dc3" ||
+          decoder.decode(tx.note).toLowerCase() ==
+            "b966c3d07e17b9442740dd2386e6e1ab191d51e964cee3b4dfc122f0fa865d10")
       ) {
         rows.push({
           address: sender,
@@ -67,7 +74,11 @@ export async function Challenge1Logic(startTime: number, endTime: number) {
           Number(tx.paymentTransaction.amount) ==
             algosdk.algosToMicroalgos(1) &&
           tx.paymentTransaction.receiver ==
-            "2JAZQO6Z5BCXFMPVW2CACK2733VGKWLZKS6DGG565J7H5NH77JNHLIIXLY"
+            "2JAZQO6Z5BCXFMPVW2CACK2733VGKWLZKS6DGG565J7H5NH77JNHLIIXLY" &&
+          (decoder.decode(tx.note).toLowerCase() ==
+            "ae6ebfcff2e1d10cafb51c0e4ab77da22838436dd3b5d82b7d2eb6104bd30dc3" ||
+            decoder.decode(tx.note).toLowerCase() ==
+              "b966c3d07e17b9442740dd2386e6e1ab191d51e964cee3b4dfc122f0fa865d10")
         ) {
           rows.push({
             address: sender,

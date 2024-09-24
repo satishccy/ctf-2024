@@ -31,6 +31,10 @@ table#leaderboard.row td.row {
   min-width: 10px;
 }
 
+table#leaderboard.row tr.row.invalid {
+  color: gray;
+}
+
 table#leaderboard.row tr.row:nth-child(odd) {
   background-color: #222;
 }

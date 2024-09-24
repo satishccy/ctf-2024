@@ -7,6 +7,8 @@ export const Challenge1Page = () => {
       <SingleChallengeLeaderboard
         fetchLeaderboard={Challenge1Logic}
         challengeName="Challenge 1"
+        startTime={1725075000}
+        endTime={1725546600}
       />
     </>
   );
