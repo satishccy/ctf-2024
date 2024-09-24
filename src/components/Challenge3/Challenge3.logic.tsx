@@ -24,7 +24,6 @@ export async function Challenge3Logic(startTime: number, endTime: number) {
     .do();
   const decoder = new TextDecoder();
 
-  console.log(response);
   for (let i = 0; i < response.transactions.length; i++) {
     const tx = response.transactions[i];
     const sender: string = tx.sender;
@@ -33,7 +32,6 @@ export async function Challenge3Logic(startTime: number, endTime: number) {
         ? tx.roundTime <= endTime
         : true
       : false;
-    console.log(decoder.decode(tx.note));
     if (tx.paymentTransaction) {
       if (
         Number(tx.paymentTransaction.amount) == algosdk.algosToMicroalgos(1) &&

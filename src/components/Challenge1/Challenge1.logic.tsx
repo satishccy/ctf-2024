@@ -22,7 +22,6 @@ export async function Challenge1Logic(startTime: number, endTime: number) {
     .sigType("sig")
     .afterTime(new Date(startTime * 1000).toISOString())
     .do();
-  console.log(response);
   for (let i = 0; i < response.transactions.length; i++) {
     const tx = response.transactions[i];
     const sender: string = tx.sender;
