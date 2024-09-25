@@ -22,6 +22,8 @@ export async function Challenge1Logic(startTime: number, endTime: number) {
     .sigType("sig")
     .afterTime(new Date(startTime * 1000).toISOString())
     .do();
+  const decoder = new TextDecoder();
+
   for (let i = 0; i < response.transactions.length; i++) {
     const tx = response.transactions[i];
     const sender: string = tx.sender;
@@ -34,7 +36,8 @@ export async function Challenge1Logic(startTime: number, endTime: number) {
       if (
         Number(tx.paymentTransaction.amount) == algosdk.algosToMicroalgos(1) &&
         tx.paymentTransaction.receiver ==
-          "2JAZQO6Z5BCXFMPVW2CACK2733VGKWLZKS6DGG565J7H5NH77JNHLIIXLY"
+          "2JAZQO6Z5BCXFMPVW2CACK2733VGKWLZKS6DGG565J7H5NH77JNHLIIXLY" &&
+        (tx.note === undefined || decoder.decode(tx.note) == "CTF Flag")
       ) {
         rows.push({
           address: sender,
@@ -66,7 +69,8 @@ export async function Challenge1Logic(startTime: number, endTime: number) {
           Number(tx.paymentTransaction.amount) ==
             algosdk.algosToMicroalgos(1) &&
           tx.paymentTransaction.receiver ==
-            "2JAZQO6Z5BCXFMPVW2CACK2733VGKWLZKS6DGG565J7H5NH77JNHLIIXLY"
+            "2JAZQO6Z5BCXFMPVW2CACK2733VGKWLZKS6DGG565J7H5NH77JNHLIIXLY" &&
+          (tx.note === undefined || decoder.decode(tx.note) == "CTF Flag")
         ) {
           rows.push({
             address: sender,
