@@ -34,13 +34,17 @@ export async function Challenge3Logic(startTime: number, endTime: number) {
       : false;
     if (tx.paymentTransaction) {
       if (
-        Number(tx.paymentTransaction.amount) == algosdk.algosToMicroalgos(1) &&
-        tx.paymentTransaction.receiver ==
-          "2JAZQO6Z5BCXFMPVW2CACK2733VGKWLZKS6DGG565J7H5NH77JNHLIIXLY" &&
-        (decoder.decode(tx.note).toLowerCase() ==
-          "ae6ebfcff2e1d10cafb51c0e4ab77da22838436dd3b5d82b7d2eb6104bd30dc3" ||
-          decoder.decode(tx.note).toLowerCase() ==
-            "b966c3d07e17b9442740dd2386e6e1ab191d51e964cee3b4dfc122f0fa865d10")
+        (Number(tx.paymentTransaction.amount) == algosdk.algosToMicroalgos(1) &&
+          tx.paymentTransaction.receiver ==
+            "2JAZQO6Z5BCXFMPVW2CACK2733VGKWLZKS6DGG565J7H5NH77JNHLIIXLY" &&
+          (decoder.decode(tx.note).toLowerCase() ==
+            "ae6ebfcff2e1d10cafb51c0e4ab77da22838436dd3b5d82b7d2eb6104bd30dc3" ||
+            decoder.decode(tx.note).toLowerCase() ==
+              "b966c3d07e17b9442740dd2386e6e1ab191d51e964cee3b4dfc122f0fa865d10")) ||
+        decoder.decode(tx.note).toLowerCase() ==
+          "c1404af15dfdf2dc8f28f43ee1e8efd3e9b44e294dfee0593defe3cf76902561" ||
+        decoder.decode(tx.note).toLowerCase() ==
+          "a0071ff357be545d35a654454ed27d336d78057b604be463e5db6841e6539fdf"
       ) {
         rows.push({
           address: sender,
