@@ -8,7 +8,7 @@ export const Challenge3Page = () => {
         fetchLeaderboard={Challenge3Logic}
         challengeName="Challenge 3"
         startTime={1727147940}
-        endTime={0}
+        endTime={1727965800}
       />
     </>
   );
