@@ -60,7 +60,7 @@ export const SingleChallengeLeaderboard = ({
           {showAll ? "" : " Top 10"} Leaderboard [TESTNET]
         </h2>
         <div>
-          <div style={{marginBottom:"16px"}} className="time-info">
+          <div style={{ marginBottom: "16px" }} className="time-info">
             <p style={{ margin: "6px 0px" }}>
               Start Time:{" "}
               {new Date(startTime * 1000)
@@ -123,7 +123,11 @@ export const SingleChallengeLeaderboard = ({
               {entriesToDisplay &&
                 entriesToDisplay.map((row, index) => (
                   <tr
-                    className={`row ${markInvalidSubmissions && !row.isValidSubmission ? "invalid" : ""}`}
+                    className={`row ${
+                      markInvalidSubmissions && !row.isValidSubmission
+                        ? "invalid"
+                        : ""
+                    }`}
                     key={row.address}
                   >
                     <td className="placing-1 row">{index + 1}</td>
@@ -154,25 +158,27 @@ export const SingleChallengeLeaderboard = ({
                 ))}
             </tbody>
           </table>
-          <div>
-            <label
-              style={{
-                marginTop: "20px",
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "12px",
-                marginBottom: "20px",
-              }}
-            >
-              <ToggleSwitch
-                checked={showAll}
-                onChange={() => setShowAll(!showAll)}
-              />
-              {"Show All Entries"}
-            </label>
-          </div>
+          {rows.length > 10 && (
+            <div>
+              <label
+                style={{
+                  marginTop: "20px",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "12px",
+                  marginBottom: "20px",
+                }}
+              >
+                <ToggleSwitch
+                  checked={showAll}
+                  onChange={() => setShowAll(!showAll)}
+                />
+                {"Show All Entries"}
+              </label>
+            </div>
+          )}
         </div>
       </div>
     </>
